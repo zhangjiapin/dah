@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+   FILE *file = NULL;
+   char ch;
+   char str[80];
+   if ((file=fopen("D:\\c\\ls\\text.txt","a+")) == NULL)
+   {
+	   printf("打开失败！\n");
+	   exit(0);
+   }
+   int i=1;
+   while(1)
+   {
+   		printf("请输入第%d个国家和国家的金牌数量,全部输入完毕请输入0结束\n",i++);
+		gets(str);
+		if(strcmp(str,"0")!=0)
+		{
+		strcat(str,"\n");
+		fputs(str,file);
+		}	
+		else
+			break;
+   }
+   fclose(file);
+   if ((file=fopen("D:\\c\\ls\\text.txt","r")) == NULL)
+   {
+	   printf("文件打开失败！");
+	   exit(0);
+   }
+   while(fgets(str,79,file) != NULL)
+     printf("%s",str);
+   fclose(file);
+   return 0;
+}
